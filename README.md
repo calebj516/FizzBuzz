@@ -1,2 +1,2 @@
-# JsSiteTemplate
-Site Template for JS projects for Coder Foundry
+# FizzBuzz
+Mini-site created from JsSiteTemplate for the well-known FizzBuzz coding challenge
