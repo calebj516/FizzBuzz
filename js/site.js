@@ -14,7 +14,7 @@ function getValues()  {
 function calculateResults(startVal, endVal) {
   const nums = [];
 
-  for(let i = startVal; i <= endVal; i++){
+  for(let i = startVal; i < endVal; i++){
 
     if(i % 5 === 0 && i % 3 === 0){
       nums.push("FizzBuzz");
@@ -34,19 +34,24 @@ function calculateResults(startVal, endVal) {
 // display results
 function displayResults(nums) {
 
-  let templateRow = "";
+  let templateRows = "";
   let templateData = "";
+  let count = 1;
 
-  for(let i = 0; i < nums.length; i++){
+  for(let i = 0; i <= Math.ceil(nums.length / 5); i++){
 
-    let number = nums[i];
-    templateData += `<td>${number}</td>`;
-    // templateRow += `<tr>${templateData}</tr>`;
+    for(let j = 0; j < 5; j++){
+      // let slicedArr = nums.slice(0, 4)
+      templateData += `<td>${nums[j]}</td>`;
+    }
+
+    templateRows += `<tr>${templateData}</tr><br>`;
+    templateData = "";
+    nums = nums.slice(count += 4);
+
   }
 
-
-
-  document.getElementById('results').innerHTML = templateData;
+  document.getElementById('results').innerHTML = templateRows;
 
 }
 
