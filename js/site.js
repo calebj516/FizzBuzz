@@ -1,18 +1,18 @@
 
-function getValues()  {
+function getValues() {
   // get values from the page
   let fizzVal = document.getElementById('fizz').value;
   let buzzVal = document.getElementById('buzz').value;
 
   // call calculateResults
-  const fizzBuzzArray = calculateResults(fizzVal, buzzVal);
+  const fizzBuzzArray = fizzBuzzC(fizzVal, buzzVal);
   // call display results
   displayResults(fizzBuzzArray);
   
 }
 
-// calculate results
-function calculateResults(fizzVal, buzzVal) {
+// calculate results - loop with if statement
+function fizzBuzzA(fizzVal, buzzVal) {
 
   // initialize return array
   const nums = [];
@@ -37,6 +37,52 @@ function calculateResults(fizzVal, buzzVal) {
 
   // return array
   return nums;
+}
+// calculate results - loop with switch statement
+function fizzBuzzB(fizzVal, buzzVal) {
+
+  let returnArray = [];
+  let Fizz = false;
+  let Buzz = false;
+
+  for(let i = 1; i <= 100; i++){
+
+    Fizz = i % fizzVal === 0;
+    Buzz = i % buzzVal === 0;
+
+    switch(true)
+    {
+      case Fizz && Buzz:
+        returnArray.push("FizzBuzz");
+        break;
+      case Fizz:
+        returnArray.push("Fizz");
+        break;
+      case Buzz:
+        returnArray.push("Buzz")
+        break;
+      default:
+        returnArray.push(i);
+        break;
+    }
+
+  }
+
+  return returnArray;
+
+}
+// calculate results - loop with ternary operators
+function fizzBuzzC(fizzVal, buzzVal) {
+
+  let returnArray = [];
+
+  for(let i = 1; i <= 100; i++){
+    let value = ((i % fizzVal === 0 ? 'Fizz' : '') + (i % buzzVal === 0 ? 'Buzz' : '') || i );
+    returnArray.push(value);
+  }
+
+  return returnArray;
+
 }
 
 // loop over array and create a table row for each item
