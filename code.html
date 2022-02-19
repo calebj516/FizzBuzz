@@ -37,7 +37,7 @@
     <!-- Nav Section -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand logoFont" href="#"> FizzBuzz</a>
+        <a class="navbar-brand logoFont" href="index.html"> FizzBuzz</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -63,7 +63,12 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" target="_blank" href="https://github.com/calebj516/FizzBuzz">Git Repo</a>
+              <a
+                class="nav-link"
+                target="_blank"
+                href="https://github.com/calebj516/FizzBuzz"
+                >Git Repo</a
+              >
             </li>
             <li class="nav-item">
               <a
@@ -81,25 +86,120 @@
     <main class="flex-shrink-0">
       <div class="container py-5 px-5 mt-5">
         <h2 class="border-1 border-bottom border-dark">
-          The Code for APP NAME.
+          The Code for Fizz Buzz.
         </h2>
         <div class="row row-cols-1 row-cols-lg-2">
-          <div class="col-lg-8">
+          <div class="col-lg-7">
             <pre class="line-numbers">
-                <code class="language-javascript">
-                  // call Hello World
-                    function HelloWorld() {
-                      alert("Hello World!");
+                <code class="language-javascript">                  
+                  function getValues() {
+                    // get values from the page
+                    let fizzVal = document.getElementById('fizz').value;
+                    let buzzVal = document.getElementById('buzz').value;
+                    // call fizzBuzz function to calculate results
+                    const fizzBuzzArray = fizzBuzz(fizzVal, buzzVal);
+                    // call display results
+                    displayResults(fizzBuzzArray);
+                  }        
+
+                  // calculate results - loop with ternary operators
+                  function fizzBuzz(fizzVal, buzzVal) {
+                    let returnArray = [];
+                    // loop from 1 through 100 and push the appropriate value (Fizz, Buzz, FizzBuzz, or i if neither) to the array
+                    for(let i = 1; i <= 100; i++){
+                      let value = ((i % fizzVal === 0 ? 'Fizz' : '') + (i % buzzVal === 0 ? 'Buzz' : '') || i );
+                      returnArray.push(value);
                     }
+                    // return the results
+                    return returnArray;
+                  }
+
+
+                  // loop over array and create a table row for each item
+                  function displayResults(fbData) {
+                    // get the table body element from the page
+                    const tableBody = document.getElementById('results');
+                    // get the template row
+                    const templateRow = document.getElementById('fbTemplate');
+                    // clear table first
+                    tableBody.innerHTML = "";
+                    // loop through elements of fizz buzz data array
+                    for(let i = 0; i < fbData.length; i += 5){
+                      // import template element from app.html as a document fragment (essentially make a copy of it)
+                      // true includes the node's descendants
+                      let tableRow = document.importNode(templateRow.content, true);
+                      // grab the td elements to put into an array
+                      let rowCols = tableRow.querySelectorAll('td');
+                      // set the class to the element in fbData 
+                      // if it is "Fizz", "Buzz", or "FizzBuzz", certain CSS rules to change the color and font-weight will be triggered.
+                      // cell 1
+                      rowCols[0].classList.add(fbData[i]);
+                      rowCols[0].textContent = fbData[i];
+                      // cell 2
+                      rowCols[1].classList.add(fbData[i + 1]);
+                      rowCols[1].textContent = fbData[i + 1];
+                      // cell 3
+                      rowCols[2].classList.add(fbData[i + 2]);
+                      rowCols[2].textContent = fbData[i + 2];
+                      // cell 4
+                      rowCols[3].classList.add(fbData[i + 3]);
+                      rowCols[3].textContent = fbData[i + 3];
+                      // cell 5
+                      rowCols[4].classList.add(fbData[i + 4]);
+                      rowCols[4].textContent = fbData[i + 4];
+                      // add all the rows to the table
+                      tableBody.appendChild(tableRow);
+                    }
+                  }
               </code>
             </pre>
           </div>
-          <div class="col-lg-4">
-            <p>The Code is structured in one function.</p>
-            <h5>Hello World</h5>
+          <div class="col-lg-5">
+            <p>The Code is structured using three functions.</p>
+            <h5>Get Values</h5>
             <p>
-              Hello World is a function that displays an alert with a message of
-              "Hello World!"
+              The function getValues starts things off by obtaining the Fizz and
+              Buzz values from the page. These values are then passed to the
+              fizzBuzz function to calculate the results, which are returned as
+              an array. Finally, the result array is passed to the
+              displayResults function to display the results on the page.
+            </p>
+            <h5>Fizz Buzz</h5>
+            <p>
+              The function fizzBuzz, as the name suggests, determines which
+              values qualify as Fizz, Buzz, both, or neither. This is done using
+              a for loop running from 1 through 100, combined with a variable
+              that contains the result of a series of ternary operators, along
+              with the logical OR operator. First, if n is divisible by 3, Fizz
+              + an empty string is returned, which evaluates to Fizz. Next, if n
+              is divisible by 5, an empty string + Buzz is returned, which
+              evaluates to Buzz. Therefore, if n is divisible by both 3 and 5,
+              Fizz + Buzz is returned, which evaluates to FizzBuzz, and if n is
+              divisible by neither 3 nor 5, the two "halves" of the expression
+              evaluate to an empty string, which evaluates to false. Due to the
+              logical OR operator, the truthy value will always be returned,
+              which in this final case is n. The value is then pushed to the
+              array and the array is returned after the loop ends.
+            </p>
+            <h5>Display Results</h5>
+            <p>
+              Our final function, displayResults, handles the task of displaying
+              the data on the page. It accepts the array with the results
+              determined by the fizzBuzz function and uses a for loop to process
+              its contents. This loop relies on the template element used in
+              app.html which contains one table row with five cells. This is
+              targeted by our templateRow variable, which is used in the
+              tableRow variable inside the loop to import its contents. Next,
+              all of the cells are targeted using querySelectorAll and saved
+              into the rowCols variable. We then fill all five cells using the
+              current sequence of five index values to extract the appropriate
+              data from the fizz buzz array fbData. We are also setting the
+              class on each element using the element's contents, which if they
+              happen to be Fizz, Buzz, or FizzBuzz, trigger specific rules in
+              the site.css file to change the appearance of the element. Lastly,
+              we append the row to the body of the table, and the process is
+              repeated for the next five elements (i += 5 in the loop header)
+              until all 100 numbers are processed.
             </p>
           </div>
         </div>
