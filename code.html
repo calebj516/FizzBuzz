@@ -89,18 +89,26 @@
           The Code for Fizz Buzz.
         </h2>
         <div class="row row-cols-1 row-cols-lg-2">
-          <div class="col-lg-7">
+          <div class="col-lg-9">
             <pre class="line-numbers">
                 <code class="language-javascript">                  
                   function getValues() {
                     // get values from the page
-                    let fizzVal = document.getElementById('fizz').value;
-                    let buzzVal = document.getElementById('buzz').value;
-                    // call fizzBuzz function to calculate results
-                    const fizzBuzzArray = fizzBuzz(fizzVal, buzzVal);
-                    // call display results
-                    displayResults(fizzBuzzArray);
-                  }        
+                  
+                    let fizzVal = parseInt(document.getElementById('fizz').value);
+                    let buzzVal = parseInt(document.getElementById('buzz').value);
+                  
+                    // call fizzBizz function to calculate results
+                    if(Number.isInteger(fizzVal) && Number.isInteger(buzzVal)) {
+                      const fizzBuzzArray = fizzBuzz(fizzVal, buzzVal);
+                  
+                      // display results
+                      displayResults(fizzBuzzArray);
+                    } else {
+                      alert("You must enter integers");
+                    }
+                  
+                  }       
 
                   // calculate results - loop with ternary operators
                   function fizzBuzz(fizzVal, buzzVal) {
@@ -154,13 +162,13 @@
               </code>
             </pre>
           </div>
-          <div class="col-lg-5">
+          <div class="col-lg-3">
             <p>The Code is structured using three functions.</p>
             <h5>Get Values</h5>
             <p>
               The function getValues starts things off by obtaining the Fizz and
               Buzz values from the page. These values are then passed to the
-              fizzBuzz function to calculate the results, which are returned as
+              fizzBuzz function (after successfully undergoing input validation) to calculate the results, which are returned as
               an array. Finally, the result array is passed to the
               displayResults function to display the results on the page.
             </p>

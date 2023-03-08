@@ -1,12 +1,20 @@
 
 function getValues() {
   // get values from the page
-  let fizzVal = document.getElementById('fizz').value;
-  let buzzVal = document.getElementById('buzz').value;
+
+  let fizzVal = parseInt(document.getElementById('fizz').value);
+  let buzzVal = parseInt(document.getElementById('buzz').value);
+
   // call fizzBizz function to calculate results
-  const fizzBuzzArray = fizzBuzz(fizzVal, buzzVal);
-  // display results
-  displayResults(fizzBuzzArray);
+  if(Number.isInteger(fizzVal) && Number.isInteger(buzzVal)) {
+    const fizzBuzzArray = fizzBuzz(fizzVal, buzzVal);
+
+    // display results
+    displayResults(fizzBuzzArray);
+  } else {
+    alert("You must enter integers");
+  }
+
 }
 
 // calculate results - loop with ternary operators
