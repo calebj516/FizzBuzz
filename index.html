@@ -126,7 +126,7 @@
             class="col order-last order-lg-first d-flex align-items-center text-light"
           >
             <div>
-              <span class="text-muted">&copy;2023</span> Caleb Jones |
+              <span id="year" class="text-muted"></span> Caleb Jones |
               calebj516@gmail.com
             </div>
           </div>
@@ -176,5 +176,9 @@
       integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
       crossorigin="anonymous"
     ></script>
+    <script>
+      let currentYear = new Date().getFullYear();
+      document.getElementById('year').innerHTML = `&copy;${currentYear}`;
+    </script>
   </body>
 </html>

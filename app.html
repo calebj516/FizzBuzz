@@ -147,7 +147,7 @@
             class="col order-last order-lg-first d-flex align-items-center text-light"
           >
             <div>
-              <span class="text-muted">&copy;2022</span> Caleb Jones |
+              <span id="year" class="text-muted">2</span> Caleb Jones |
               calebj516@gmail.com
             </div>
           </div>
@@ -210,6 +210,10 @@
     <script src="js/site.js"></script>
     <script>
       document.getElementById('btnSubmit').addEventListener('click', getValues);
+    </script>
+    <script>
+      let currentYear = new Date().getFullYear();
+      document.getElementById('year').innerHTML = `&copy;${currentYear}`;
     </script>
   </body>
 </html>
